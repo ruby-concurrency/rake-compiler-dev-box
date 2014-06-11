@@ -13,7 +13,8 @@ if [[ $(nproc) -gt 1 ]] && ! grep -q "make -j" $home/.bash_profile; then
 fi
 
 apt-get -y update
-apt-get install -y curl git-core mingw32 default-jdk
+apt-get -y upgrade
+apt-get install -y curl git-core mingw32
 
 # Download mingw-w64 compilers
 mingw32='i686-w64-mingw32-gcc-4.7.2-release-linux64_rubenvb.tar.xz'
@@ -59,6 +60,12 @@ fi
 
 # do not generate documentation for gems
 $as_vagrant 'echo "gem: --no-ri --no-rdoc" >> ~/.gemrc'
+
+# install Oracle Java 8
+add-apt-repository ppa:webupd8team/java
+echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+apt-get -y update
+apt-get install -y oracle-java8-installer oracle-java8-set-default ant maven
 
 # install rvm
 $as_vagrant 'curl -L https://get.rvm.io | bash -s stable'

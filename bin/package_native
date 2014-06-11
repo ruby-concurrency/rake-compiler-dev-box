@@ -10,5 +10,8 @@ cd '/vagrant'
 cd $1
 
 rvm use 1.9.3
-bundle install
+
+rm -f Gemfile.lock
+bundle install --without documentation testing
+
 bundle exec rake native gem
