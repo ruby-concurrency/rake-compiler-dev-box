@@ -13,10 +13,10 @@ cd '/vagrant'
 cd $1
 
 # need to use 1.8.7 for fat-binaries (1.9.3 can't cross-build 1.8.7)
-rvm use 1.8.7
+rvm use 1.9.3
 
 rm -f Gemfile.lock
 bundle install --without documentation testing
 
 bundle exec rake clean
-bundle exec rake cross native gem RUBY_CC_VERSION=1.8.7:1.9.3:2.0.0
+bundle exec rake cross native gem RUBY_CC_VERSION=1.9.3:2.0.0
