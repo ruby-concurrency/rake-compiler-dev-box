@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
-echo 'Running bootstrap script...'
+echo 'Running Ubuntu bootstrap script...'
 
 as_vagrant='sudo -u vagrant -H bash -l -c'
 home='/home/vagrant'
