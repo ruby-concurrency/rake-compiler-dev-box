@@ -12,8 +12,8 @@ mkdir -p $install
 # download and compile ruby
 rubyver='2.1.2'
 cd $install
-wget -nc http://cache.ruby-lang.org/pub/ruby/2.1/ruby-$rubyver
-tar xzf ruby-$rubyver
+wget -nc http://cache.ruby-lang.org/pub/ruby/2.1/ruby-$rubyver.tar.gz
+tar xzf ruby-$rubyver.tar.gz
 cd ruby-$rubyver
 ./configure --enable-shared --with-opt-dir=/usr/local/lib
 make
@@ -28,18 +28,16 @@ cd rubygems-$gemver
 /usr/local/bin/ruby setup.rb 
 
 # add ruby to the path
-$as_vagrant 'echo "PATH=\$PATH:/usr/local/bin" >> ~/.bashrc'
-$as_vagrant 'source ~/.bashrc'
+if ! grep -q "/usr/local/bin" $home/.profile; then
+  echo "export PATH=\$PATH:/usr/local/bin" >> $home/.profile
+  source $home/.profile
+fi
 
 # do not generate documentation for gems
 $as_vagrant 'echo "gem: --no-ri --no-rdoc" >> ~/.gemrc'
+echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
 
-## install minimal set of useful gems
-#gem install bigdecimal
-#gem install gem-wrappers
-#gem install io-console
-#gem install json
-#gem install rake
-#gem install bundler
-#gem install rdoc
-#gem install test-unit
+# install minimal set of useful gems
+export PATH=\$PATH:/usr/local/bin
+gem install bundler
+gem install rake-compiler

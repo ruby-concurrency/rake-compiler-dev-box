@@ -45,7 +45,7 @@ Vagrant.configure('2') do |config|
     cfg.vm.box_url = './boxes/oracle-solaris-11.box'
 
     cfg.vm.provision :shell, :path => 'solaris/bootstrap.sh'
-    cfg.vm.provision :shell, :path => 'solaris/ruby-install.sh'
+    cfg.vm.provision :shell, :path => 'ruby-install.sh'
 
     cfg.vm.provider 'virtualbox' do |v|
       v.name = 'ruby-concurrency-dev-box-solaris-11'
