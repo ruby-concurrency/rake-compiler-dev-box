@@ -38,11 +38,11 @@ Vagrant.configure('2') do |config|
   ## http://www.oracle.com/technetwork/server-storage/solaris11/vmtemplates-vmvirtualbox-1949721.html
   ## http://blog.devork.be/2013/12/vagrant-solaris-python.html
   ## `vagrant package --base "ruby-concurrency-dev-box-solaris-11" --output ./boxes/oracle-solaris-11.box`
+  ## https://s3-us-west-2.amazonaws.com/ruby-concurrency-boxes/oracle-solaris-11.box
   config.vm.define 'solaris' do |cfg|
 
-    #cfg.vm.box = 'ruby-concurrency/oracle-solaris-11'
-    cfg.vm.box = 'ruby-concurrency-dev-box-oracle-solaris-11'
-    cfg.vm.box_url = './boxes/oracle-solaris-11.box'
+    cfg.vm.box = 'ruby-concurrency/oracle-solaris-11'
+    #cfg.vm.box_url = './boxes/oracle-solaris-11.box'
 
     cfg.vm.provision :shell, :path => 'solaris/bootstrap.sh'
     cfg.vm.provision :shell, :path => 'ruby-install.sh'

@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 
-set -e
-source "$HOME/.rvm/scripts/rvm"
-
 # shared directory between VM and host
 cd '/vagrant'
 
 # passed in path of gem to be cross-compiled
 cd $1
 
-rvm use 1.9.3
+# use RVM if it's installed
+if which rvm > /dev/null; then
+  source "$HOME/.rvm/scripts/rvm"
+  rvm use 1.9.3
+else
+  echo "RVM not installed, proceeding with system Ruby..."
+fi
 
 rm -f Gemfile.lock
 bundle install --without documentation testing
