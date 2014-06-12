@@ -1,3 +1,6 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
 Vagrant.require_version '>= 1.6'
 
 Vagrant.configure('2') do |config|
@@ -5,6 +8,7 @@ Vagrant.configure('2') do |config|
   config.vm.define :ubuntu64, primary: true do |cfg|
 
     cfg.vm.box = 'ubuntu/trusty64'
+
     cfg.vm.provision :shell, :path => 'bootstrap.sh'
     cfg.vm.provision :shell, :path => 'jdk.sh'
     cfg.vm.provision :shell, :path => 'ruby-mingw.sh'
@@ -20,12 +24,29 @@ Vagrant.configure('2') do |config|
   config.vm.define :ubuntu32 do |cfg|
 
     cfg.vm.box = 'ubuntu/trusty32'
+
     cfg.vm.provision :shell, :path => 'bootstrap.sh'
     cfg.vm.provision :shell, :path => 'ruby-rvm.sh'
     cfg.vm.provision :shell, :path => 'rvm-min-rubies.sh'
 
     cfg.vm.provider 'virtualbox' do |v|
       v.name = 'ruby-concurrency-dev-box-ubuntu-32'
+      v.memory = 2048
+    end
+  end
+
+  ## http://www.oracle.com/technetwork/server-storage/solaris11/vmtemplates-vmvirtualbox-1949721.html
+  ## http://blog.devork.be/2013/12/vagrant-solaris-python.html
+  ## `vagrant package --base "ruby-concurrency-dev-box-solaris-11" --output ./boxes/oracle-solaris-11.box`
+  ## "svcadm disable sendmail" shut the service off
+  config.vm.define 'solaris' do |cfg|
+
+    #cfg.vm.box = 'ruby-concurrency/oracle-solaris-11'
+    cfg.vm.box = 'ruby-concurrency-dev-box-oracle-solaris-11'
+    cfg.vm.box_url = './boxes/oracle-solaris-11.box'
+
+    cfg.vm.provider 'virtualbox' do |v|
+      v.name = 'ruby-concurrency-dev-box-solaris-11'
       v.memory = 2048
     end
   end
