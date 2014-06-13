@@ -1,93 +1,90 @@
-# rake-compiler-dev-box
+# Concurrent Ruby Build Box
 
-A virtual machine for using rake-compiler.
+A set of [Vagrant](http://www.vagrantup.com/) configurations for creating build
+machines that can build various platform-specific gem packages for
+[concurrent-ruby](https://github.com/ruby-concurrency/concurrent-ruby).
 
-[rake-compiler](https://github.com/luislavena/rake-compiler) is **totally awesome**, and you should be using it if you maintain a Ruby gem with C or Java extensions to build native binaries for your users.
-
-_However_, getting your local environment set up to build for all the assorted platforms can be a pain.  Thankfully, we have the amazing tool [Vagrant](http://www.vagrantup.com) for "lightweight, reproducible, and portable development environments."
-
-rake-compiler + Vagrant = easy native gems for all.
+This project originally began as a fork of the excellent
+[rake-compiler-dev-box](https://github.com/luislavena/rake-compiler) project. It
+has undergone significant changes since the original forking. Please rfer to the
+[original README](https://github.com/ruby-concurrency/rake-compiler-dev-box/blob/master/README.md) for more information.
 
 ## Dependencies
 
-* [Vagrant](http://www.vagrantup.com)
-* A supported [Vagrant provider](https://docs.vagrantup.com/v2/providers/index.html) — [VirtualBox](https://docs.vagrantup.com/v2/virtualbox/index.html), [Hyper-V](https://docs.vagrantup.com/v2/hyperv/index.html), and [VMware Fusion](https://docs.vagrantup.com/v2/vmware/index.html) should all work.
+* [Vagrant](http://www.vagrantup.com/) 1.6 or newer
+* [VirtualBox](https://www.virtualbox.org/) 4.3.12 or newer
 
-## How to Build the Virtual Machine
+## Building Gems
 
-Easy-peasy:
+The `Vagrantfile` in this project specifies three build box configurations. The
+two Ubuntu boxes are capable of running all the build tasks. The Solaris box
+does not support [RVM](http://rvm.io/) so it can only be used to build the
+Solaris-specific gem. For consistency, the bulk of the building should be done
+on the 64-bit Ubuntu box.
 
-    $ git clone https://github.com/tjschuck/rake-compiler-dev-box.git
-    $ cd rake-compiler-dev-box
-    $ vagrant up
-
-That's it!  Go grab a cup of coffee, though -- it can take a couple of minutes to build the first time.
-
-## Building Your Native Gems
-
-Once you have your gem ready to package, clone or move your repo into the same directory as the rake-compiler-dev-box:
+For this to work the `concurrent-ruby` git repository must be cloned into a
+directory *beneath* the `rake-compiler-dev-box` directory:
 
     $ pwd
-    /Users/tjschuck/Code/rake-compiler-dev-box
-    $ git clone git@github.com:codahale/bcrypt-ruby.git
-    Cloning into 'bcrypt-ruby'...
-    [...], done.
+    /Users/Jerry/Projects/FOSS
+    $ git clone https://github.com/ruby-concurrency/rake-compiler-dev-box.git
+    Cloning into 'rake-compiler-dev-box'...
+    $ cd rake-compiler-dev-box
+    $ git clone https://github.com/ruby-concurrency/concurrent-ruby.git
+    Cloning into 'concurrent-ruby'...
+    $ pwd
+    /Users/Jerry/Projects/FOSS/ruby-concurrency/rake-compiler-dev-box
 
-Now fire up your virtual machine (if you haven't already):
+Once both repositories have been cloned, launch each box one at a time and
+conduct the builds. The Vagrant names for the boxes are:
 
-    $ vagrant up
+* `ubuntu64`
+* `ubuntu32`
+* `solaris`
 
-And SSH in:
+Building the gem is done by logging into each virtual maching, changing to the
+correct directory, and running the appropriate script. Starting with the main
+Ubuntu 64-bit build box:
 
-    $ vagrant ssh
+    $ cd ~/Projects/FOSS/ruby-concurrency/rake-compiler-dev-box
+    $ vagrant up ubuntu64
 
-You'll now be inside the virtual machine.  The directory on your host machine with your gem in it and the scripts to build it will be mounted at `/vagrant`:
+The box may take a few minutes to boot. Next, secure shell into the box:
 
-    vagrant@precise32:~$ cd /vagrant
-    vagrant@precise32:/vagrant$ ls
-    bcrypt-ruby  bin  bootstrap.sh  LICENSE.txt  README.md  sample_gem  Vagrantfile
+    $ vagrant ssh ubuntu64
 
-To build all gem binaries (native, Java, and Windows versions), run:
+Once connected to the build box via SSH, change to the appropriate directory and
+run the build script:
 
-    vagrant@precise32:/vagrant$ package_all YOUR_GEM'S_DIR_NAME
+    $$ cd /vagrant
+    $$ package_all concurrent-ruby
 
-And wait for everything to build.  Replace `YOUR_GEM'S_DIR_NAME` with the correct value -- above, it would be `bcrypt-ruby`. There's a `sample_gem` dir in there as well if you'd like to experiment.
+Once the build process is complete, `exit` the SSH session and shutdown the
+build box:
 
-All of your gem binaries will be put into `pkg`:
+    $ vagrant halt ubuntu
 
-    vagrant@precise32:/vagrant$ ls bcrypt-ruby/pkg/
-    bcrypt-ruby-3.1.0            bcrypt-ruby-3.1.0-x86-linux.gem
-    bcrypt-ruby-3.1.0.gem        bcrypt-ruby-3.1.0-x86-mingw32
-    bcrypt-ruby-3.1.0-java       bcrypt-ruby-3.1.0-x86-mingw32.gem
-    bcrypt-ruby-3.1.0-java.gem   bcrypt-ruby-3.1.0-x86-mswin32-60
-    bcrypt-ruby-3.1.0-x86-linux  bcrypt-ruby-3.1.0-x86-mswin32-60.gem
+The process for the other two boxes is similar, except that a different build
+script should be run for each:
 
-Happy compiling!
+* ubuntu64: `package_all`
+* ubuntu32: `package_native`
+* solaris: `package_native`
 
-## VM Management
+Once the build script has run to completion, all of the created gem files will
+be saved to the `pkg` directory of the `concurrent-ruby` repository that was
+cloned beneath `rake-compiler-dev-box`.
 
-Log out of the virtual machine (`exit` or `^D`).
+The full list of builds that should have been created will be:
 
-To shut down the virtual machine:
+* concurrent-ruby-<version>-java.gem
+* concurrent-ruby-<version>-x64-mingw32.gem
+* concurrent-ruby-<version>-x86_64-linux.gem
+* concurrent-ruby-<version>-x86-linux.gem
+* concurrent-ruby-<version>-x86-mingw32.gem
+* concurrent-ruby-<version>-x86-solaris-2.11.gem
+* concurrent-ruby-<version>.gem
 
-    $ vagrant halt
+## License and Copyright
 
-To start it up again:
-
-    $ vagrant up
-
-To completely remove the VM, clearing it from disk and destroying all contents:
-
-    $ vagrant destroy
-
-To reinstantiate it for future compiling, it can be recreated with:
-
-    $ vagrant up
-
-See the [Vagrant docs](http://docs.vagrantup.com/) for more info.
-
-## :heart: :heart: :heart:
-
-* [Luis Lavena](https://github.com/luislavena) for [rake-compiler](https://github.com/luislavena/rake-compiler)
-* [rails-dev-box](https://github.com/rails/rails-dev-box) for the inspiration
-* [Harvest](http://www.getharvest.com), my awesome employer.  [We're hiring](http://www.getharvest.com/careers)!
+*Concurrent Ruby* is free software released under the [MIT License](http://www.opensource.org/licenses/MIT).
