@@ -14,4 +14,4 @@ rvm use 2.1.2
 rm -f Gemfile.lock
 bundle install --without documentation testing
 
-bundle exec rake gem
+bundle exec rake build
