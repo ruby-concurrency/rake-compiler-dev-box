@@ -15,4 +15,4 @@ rm -f Gemfile.lock
 bundle install --without documentation testing
 
 bundle exec rake clean
-bundle exec rake build
+BUILD_PURE_RUBY='true' bundle exec rake build

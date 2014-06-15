@@ -13,7 +13,7 @@ Vagrant.configure('2') do |config|
     cfg.vm.provision :shell, :path => 'ubuntu/jdk.sh'
     cfg.vm.provision :shell, :path => 'ubuntu/ruby-mingw.sh'
     cfg.vm.provision :shell, :path => 'ubuntu/ruby-rvm.sh'
-    cfg.vm.provision :shell, :path => 'rvm-max-rubies.sh'
+    cfg.vm.provision :shell, :path => 'shared/rvm-max-rubies.sh'
 
     cfg.vm.provider 'virtualbox' do |v|
       v.name = 'ruby-concurrency-dev-box-ubuntu-64'
@@ -27,7 +27,7 @@ Vagrant.configure('2') do |config|
 
     cfg.vm.provision :shell, :path => 'ubuntu/bootstrap.sh'
     cfg.vm.provision :shell, :path => 'ubuntu/ruby-rvm.sh'
-    cfg.vm.provision :shell, :path => 'rvm-min-rubies.sh'
+    cfg.vm.provision :shell, :path => 'shared/rvm-min-rubies.sh'
 
     cfg.vm.provider 'virtualbox' do |v|
       v.name = 'ruby-concurrency-dev-box-ubuntu-32'
@@ -45,7 +45,7 @@ Vagrant.configure('2') do |config|
     #cfg.vm.box_url = './boxes/oracle-solaris-11.box'
 
     cfg.vm.provision :shell, :path => 'solaris/bootstrap.sh'
-    cfg.vm.provision :shell, :path => 'ruby-install.sh'
+    cfg.vm.provision :shell, :path => 'shared/ruby-install.sh'
 
     cfg.vm.provider 'virtualbox' do |v|
       v.name = 'ruby-concurrency-dev-box-solaris-11'

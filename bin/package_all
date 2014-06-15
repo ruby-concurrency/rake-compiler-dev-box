@@ -3,7 +3,7 @@
 set -e
 source "$HOME/.rvm/scripts/rvm"
 
-package_base $1
 package_native $1
 package_java $1
 package_win32_fat_binary $1
+package_base $1
