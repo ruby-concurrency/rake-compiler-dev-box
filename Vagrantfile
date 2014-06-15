@@ -12,7 +12,7 @@ Vagrant.configure('2') do |config|
     cfg.vm.provision :shell, :path => 'ubuntu/bootstrap.sh'
     cfg.vm.provision :shell, :path => 'ubuntu/jdk.sh'
     cfg.vm.provision :shell, :path => 'ubuntu/ruby-mingw.sh'
-    cfg.vm.provision :shell, :path => 'ubuntu/ruby-rvm.sh'
+    cfg.vm.provision :shell, :path => 'shared/ruby-rvm.sh'
     cfg.vm.provision :shell, :path => 'shared/rvm-max-rubies.sh'
 
     cfg.vm.provider 'virtualbox' do |v|
@@ -26,7 +26,7 @@ Vagrant.configure('2') do |config|
     cfg.vm.box = 'ubuntu/trusty32'
 
     cfg.vm.provision :shell, :path => 'ubuntu/bootstrap.sh'
-    cfg.vm.provision :shell, :path => 'ubuntu/ruby-rvm.sh'
+    cfg.vm.provision :shell, :path => 'shared/ruby-rvm.sh'
     cfg.vm.provision :shell, :path => 'shared/rvm-min-rubies.sh'
 
     cfg.vm.provider 'virtualbox' do |v|
@@ -50,6 +50,20 @@ Vagrant.configure('2') do |config|
     cfg.vm.provider 'virtualbox' do |v|
       v.name = 'ruby-concurrency-dev-box-solaris-11'
       v.memory = 2048
+    end
+  end
+
+  config.vm.define 'centos' do |cfg|
+
+    cfg.vm.box = 'box-cutter/centos65-desktop'
+
+    cfg.vm.provision :shell, :path => 'centos/bootstrap.sh'
+    cfg.vm.provision :shell, :path => 'shared/ruby-rvm.sh'
+    cfg.vm.provision :shell, :path => 'shared/rvm-max-rubies.sh'
+
+    cfg.vm.provider 'virtualbox' do |v|
+      v.name = 'CentOS 6.5'
+      v.name = 'ruby-concurrency-dev-box-centoss-6_5'
     end
   end
 end
