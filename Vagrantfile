@@ -53,9 +53,23 @@ Vagrant.configure('2') do |config|
     end
   end
 
-  config.vm.define 'centos' do |cfg|
+  config.vm.define 'centos64' do |cfg|
 
-    cfg.vm.box = 'box-cutter/centos65-desktop'
+    cfg.vm.box = 'box-cutter/centos65'
+
+    cfg.vm.provision :shell, :path => 'centos/bootstrap.sh'
+    cfg.vm.provision :shell, :path => 'shared/ruby-rvm.sh'
+    cfg.vm.provision :shell, :path => 'shared/rvm-max-rubies.sh'
+
+    cfg.vm.provider 'virtualbox' do |v|
+      v.name = 'CentOS 6.5'
+      v.name = 'ruby-concurrency-dev-box-centoss-6_5'
+    end
+  end
+
+  config.vm.define 'centos32' do |cfg|
+
+    cfg.vm.box = 'box-cutter/centos65-i386'
 
     cfg.vm.provision :shell, :path => 'centos/bootstrap.sh'
     cfg.vm.provision :shell, :path => 'shared/ruby-rvm.sh'
