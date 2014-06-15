@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-source "$HOME/.rvm/scripts/rvm"
-
 VERSION="0.7.0.native.0"
-EXAMPLES="./tests"
-PKG="./concurrent-ruby/pkg"
+EXAMPLES="/vagrant/tests"
+PKG="/vagrant/concurrent-ruby/pkg"
 
-echo "concurrent-ruby-$VERSION-x86_64-darwin-13.gem"
+echo "concurrent-ruby-$VERSION-x86_64-linux.gem"
 echo "concurrent-ruby-$VERSION.gem"
 echo "concurrent-ruby-$VERSION-java.gem"
+
+source "$HOME/.rvm/scripts/rvm"
 
 #####################################################################
 # Ruby 1.9.3
@@ -23,7 +23,7 @@ gem install $PKG/concurrent-ruby-$VERSION.gem --no-ri --no-rdoc
 ruby $EXAMPLES/bench_atomic.rb
 gem uninstall concurrent-ruby -I -a -x
 
-gem install $PKG/concurrent-ruby-$VERSION-x86_64-darwin-13.gem --no-ri --no-rdoc
+gem install $PKG/concurrent-ruby-$VERSION-x86_64-linux.gem --no-ri --no-rdoc
 ruby $EXAMPLES/bench_atomic.rb
 gem uninstall concurrent-ruby -I -a -x
 
@@ -40,7 +40,7 @@ gem install $PKG/concurrent-ruby-$VERSION.gem --no-ri --no-rdoc
 ruby $EXAMPLES/bench_atomic.rb
 gem uninstall concurrent-ruby -I -a -x
 
-gem install $PKG/concurrent-ruby-$VERSION-x86_64-darwin-13.gem --no-ri --no-rdoc
+gem install $PKG/concurrent-ruby-$VERSION-x86_64-linux.gem --no-ri --no-rdoc
 ruby $EXAMPLES/bench_atomic.rb
 gem uninstall concurrent-ruby -I -a -x
 
@@ -57,7 +57,7 @@ gem install $PKG/concurrent-ruby-$VERSION.gem --no-ri --no-rdoc
 ruby $EXAMPLES/bench_atomic.rb
 gem uninstall concurrent-ruby -I -a -x
 
-gem install $PKG/concurrent-ruby-$VERSION-x86_64-darwin-13.gem --no-ri --no-rdoc
+gem install $PKG/concurrent-ruby-$VERSION-x86_64-linux.gem --no-ri --no-rdoc
 ruby $EXAMPLES/bench_atomic.rb
 gem uninstall concurrent-ruby -I -a -x
 
@@ -78,15 +78,15 @@ gem install $PKG/concurrent-ruby-$VERSION.gem --no-ri --no-rdoc
 ruby $EXAMPLES/bench_atomic.rb
 gem uninstall concurrent-ruby -I -a -x
 
-#####################################################################
-# Rubinius 2.2.7
-echo '###############################################################'
+######################################################################
+## Rubinius 2.2.7
+#echo '###############################################################'
 
-rvm use rbx-2.2.7@concurrent-ruby-test --create
-gem uninstall concurrent-ruby -I -a -x
+#rvm use rbx-2.2.7@concurrent-ruby-test --create
+#gem uninstall concurrent-ruby -I -a -x
 
-ruby -v
+#ruby -v
 
-gem install $PKG/concurrent-ruby-$VERSION.gem --no-ri --no-rdoc
-ruby $EXAMPLES/bench_atomic.rb
-gem uninstall concurrent-ruby -I -a -x
+#gem install $PKG/concurrent-ruby-$VERSION.gem --no-ri --no-rdoc
+#ruby $EXAMPLES/bench_atomic.rb
+#gem uninstall concurrent-ruby -I -a -x

@@ -1,0 +1,38 @@
+concurrent-ruby-0.7.0.native.0-x86-solaris-2.11.gem
+concurrent-ruby-0.7.0.native.0.gem
+ruby 2.1.2p95 (2014-05-08 revision 45877) [i386-solaris2.11]
+Successfully installed concurrent-ruby-0.7.0.native.0
+1 gem installed
+Compiled extensions not installed, pure Ruby Atomic will be used.
+Testing with ruby 2.1.2
+
+*** Sequential updates ***
+                 user     system      total        real
+no lock      0.010000   0.000000   0.010000 (  0.011777)
+mutex        0.050000   0.000000   0.050000 (  0.053726)
+MutexAtomic  0.210000   0.000000   0.210000 (  0.225953)
+
+*** Parallel updates ***
+                 user     system      total        real
+no lock      0.010000   0.000000   0.010000 (  0.018574)
+mutex        0.060000   0.000000   0.060000 (  0.065645)
+MutexAtomic  0.210000   0.000000   0.210000 (  0.240123)
+Successfully uninstalled concurrent-ruby-0.7.0.native.0
+Successfully installed concurrent-ruby-0.7.0.native.0-x86-solaris-2.11
+1 gem installed
+Testing with ruby 2.1.2
+
+*** Sequential updates ***
+                 user     system      total        real
+no lock      0.010000   0.000000   0.010000 (  0.011143)
+mutex        0.050000   0.000000   0.050000 (  0.056111)
+MutexAtomic  0.220000   0.000000   0.220000 (  0.228523)
+CAtomic      0.070000   0.000000   0.070000 (  0.083506)
+
+*** Parallel updates ***
+                 user     system      total        real
+no lock      0.020000   0.000000   0.020000 (  0.019957)
+mutex        0.060000   0.000000   0.060000 (  0.069228)
+MutexAtomic  0.220000   0.000000   0.220000 (  0.237830)
+CAtomic      0.090000   0.000000   0.090000 (  0.090155)
+Successfully uninstalled concurrent-ruby-0.7.0.native.0-x86-solaris-2.11
