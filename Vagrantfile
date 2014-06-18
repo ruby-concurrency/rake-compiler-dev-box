@@ -58,12 +58,12 @@ Vagrant.configure('2') do |config|
     cfg.vm.box = 'box-cutter/centos65'
 
     cfg.vm.provision :shell, :path => 'centos/bootstrap.sh'
+    cfg.vm.provision :shell, :path => 'centos/jdk.sh'
     cfg.vm.provision :shell, :path => 'shared/ruby-rvm.sh'
-    cfg.vm.provision :shell, :path => 'shared/rvm-max-rubies.sh'
+    cfg.vm.provision :shell, :path => 'shared/rvm-min-rubies.sh'
 
     cfg.vm.provider 'virtualbox' do |v|
-      v.name = 'CentOS 6.5'
-      v.name = 'ruby-concurrency-dev-box-centoss-6_5'
+      v.name = 'ruby-concurrency-dev-box-centoss-6_5-64'
     end
   end
 
@@ -73,11 +73,10 @@ Vagrant.configure('2') do |config|
 
     cfg.vm.provision :shell, :path => 'centos/bootstrap.sh'
     cfg.vm.provision :shell, :path => 'shared/ruby-rvm.sh'
-    cfg.vm.provision :shell, :path => 'shared/rvm-max-rubies.sh'
+    cfg.vm.provision :shell, :path => 'shared/rvm-min-rubies.sh'
 
     cfg.vm.provider 'virtualbox' do |v|
-      v.name = 'CentOS 6.5'
-      v.name = 'ruby-concurrency-dev-box-centoss-6_5'
+      v.name = 'ruby-concurrency-dev-box-centoss-6_5-32'
     end
   end
 end
