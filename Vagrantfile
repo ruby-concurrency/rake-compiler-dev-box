@@ -18,6 +18,7 @@ Vagrant.configure('2') do |config|
     cfg.vm.provider 'virtualbox' do |v|
       v.name = 'ruby-concurrency-dev-box-ubuntu-64'
       v.memory = 2048
+      v.cpus = 1
     end
   end
 
@@ -32,6 +33,7 @@ Vagrant.configure('2') do |config|
     cfg.vm.provider 'virtualbox' do |v|
       v.name = 'ruby-concurrency-dev-box-ubuntu-32'
       v.memory = 2048
+      v.cpus = 1
     end
   end
 
@@ -50,6 +52,7 @@ Vagrant.configure('2') do |config|
     cfg.vm.provider 'virtualbox' do |v|
       v.name = 'ruby-concurrency-dev-box-solaris-11'
       v.memory = 2048
+      v.cpus = 1
     end
   end
 
@@ -64,6 +67,8 @@ Vagrant.configure('2') do |config|
 
     cfg.vm.provider 'virtualbox' do |v|
       v.name = 'ruby-concurrency-dev-box-centoss-6_5-64'
+      v.memory = 2048
+      v.cpus = 1
     end
   end
 
@@ -77,6 +82,8 @@ Vagrant.configure('2') do |config|
 
     cfg.vm.provider 'virtualbox' do |v|
       v.name = 'ruby-concurrency-dev-box-centoss-6_5-32'
+      v.memory = 2048
+      v.cpus = 1
     end
   end
 end
