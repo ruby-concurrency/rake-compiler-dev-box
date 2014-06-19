@@ -63,7 +63,7 @@ Vagrant.configure('2') do |config|
     cfg.vm.provision :shell, :path => 'centos/bootstrap.sh'
     cfg.vm.provision :shell, :path => 'centos/jdk.sh'
     cfg.vm.provision :shell, :path => 'shared/ruby-rvm.sh'
-    cfg.vm.provision :shell, :path => 'shared/rvm-min-rubies.sh'
+    cfg.vm.provision :shell, :path => 'shared/rvm-max-rubies.sh'
 
     cfg.vm.provider 'virtualbox' do |v|
       v.name = 'ruby-concurrency-dev-box-centoss-6_5-64'
