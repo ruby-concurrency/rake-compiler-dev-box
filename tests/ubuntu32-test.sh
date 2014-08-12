@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION="0.7.0.rc0"
+VERSION="0.7.0.rc3"
 EXAMPLES="/vagrant/tests"
 PKG="/vagrant/concurrent-ruby/pkg"
 
