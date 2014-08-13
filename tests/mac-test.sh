@@ -2,7 +2,7 @@
 
 source "$HOME/.rvm/scripts/rvm"
 
-VERSION="0.7.0.rc3"
+VERSION="0.7.0"
 EXAMPLES="./tests"
 PKG="./concurrent-ruby/pkg"
 

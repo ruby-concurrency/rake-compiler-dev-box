@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION="0.7.0.rc3"
+VERSION="0.7.0"
 EXAMPLES="/vagrant/tests"
 PKG="/vagrant/concurrent-ruby/pkg"
 
@@ -70,11 +70,11 @@ gem uninstall concurrent-ruby -I -a -x
 
 ruby -v
 
-gem install $PKG/concurrent-ruby-$VERSION-java.gem --no-ri --no-rdoc
+gem install $PKG/concurrent-ruby-$VERSION.gem --no-ri --no-rdoc
 ruby $EXAMPLES/bench_atomic.rb
 gem uninstall concurrent-ruby -I -a -x
 
-gem install $PKG/concurrent-ruby-$VERSION.gem --no-ri --no-rdoc
+gem install $PKG/concurrent-ruby-$VERSION-java.gem --no-ri --no-rdoc
 ruby $EXAMPLES/bench_atomic.rb
 gem uninstall concurrent-ruby -I -a -x
 
