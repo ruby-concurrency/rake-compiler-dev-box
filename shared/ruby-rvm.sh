@@ -11,6 +11,7 @@ touch $home/.bash_profile
 $as_vagrant 'echo "gem: --no-ri --no-rdoc" >> ~/.gemrc'
 
 # install rvm
+$as_vagrant 'gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3'
 $as_vagrant 'curl -L https://get.rvm.io | bash -s stable'
 
 # source rvm for usage outside of package scripts
