@@ -9,7 +9,7 @@ cd '/vagrant'
 # passed in path of gem to be cross-compiled
 cd $1
 
-rvm use 2.1.2
+rvm use ruby
 
 rm -f Gemfile.lock
 bundle install --without documentation testing
