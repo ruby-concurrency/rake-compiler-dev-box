@@ -18,5 +18,5 @@ rvm use 1.9.3
 rm -f Gemfile.lock
 bundle install --without documentation testing
 
-bundle exec rake clean
-bundle exec rake cross native gem RUBY_CC_VERSION=1.9.3:2.0.0
+rake clean
+rake cross native gem RUBY_CC_VERSION=1.9.3:2.0.0

@@ -20,6 +20,10 @@ Vagrant.configure('2') do |config|
       v.memory = 2048
       v.cpus = 1
     end
+
+    #cfg.vm.provider :virtualbox do |vb|
+      #vb.gui = true
+    #end
   end
 
   config.vm.define :ubuntu32 do |cfg|

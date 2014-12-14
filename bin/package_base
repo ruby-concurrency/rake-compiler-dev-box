@@ -14,5 +14,5 @@ rvm use ruby
 rm -f Gemfile.lock
 bundle install --without documentation testing
 
-bundle exec rake clean
-BUILD_PURE_RUBY='true' bundle exec rake build
+rake clean
+rake build

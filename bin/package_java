@@ -17,4 +17,5 @@ gem update --system 1.8.25
 rm -f Gemfile.lock
 bundle install --without documentation testing
 
-bundle exec rake java gem
+rake clean
+rake build

@@ -17,4 +17,5 @@ fi
 rm -f Gemfile.lock
 bundle install --without documentation testing
 
-bundle exec rake native gem
+rake clean
+rake native gem
