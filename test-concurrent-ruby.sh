@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-tests/mac-test.sh
+tests/all-rubies-test.sh
 
 vagrant up ubuntu64
 vagrant ssh ubuntu64 --command '/vagrant/tests/ubuntu64-test.sh'
