@@ -10,4 +10,5 @@ $as_vagrant 'rvm install ruby'
 $as_vagrant 'rvm install jruby'
 $as_vagrant 'rvm install 2.0.0'
 $as_vagrant 'rvm install 1.9.3'
+# RVM is currently having problems installing Rbx on Ubuntu
 #$as_vagrant 'rvm install rbx'
