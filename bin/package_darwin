@@ -3,17 +3,14 @@
 set -e
 source "$HOME/.rvm/scripts/rvm"
 
-# shared directory between VM and host
-cd '/vagrant'
-
 # passed in path of gem to be cross-compiled
 cd $1
 
-rvm use ruby-2.2.0
+rvm use ruby-2.2.0@build-$1 --create
 gem update --system
 
 rm -f Gemfile.lock
 bundle install --without documentation testing
 
 rake clean
-rake build
+rake build:native

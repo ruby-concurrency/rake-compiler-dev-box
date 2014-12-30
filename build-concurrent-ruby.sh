@@ -20,10 +20,10 @@ vagrant up ubuntu32 --provision
 vagrant ssh ubuntu32 --command 'package_native concurrent-ruby'
 vagrant halt ubuntu32
 
-vagrant up solaris --provision
-vagrant ssh solaris --command 'package_native concurrent-ruby'
-vagrant halt solaris
+#vagrant up solaris --provision
+#vagrant ssh solaris --command 'package_native concurrent-ruby'
+#vagrant halt solaris
 
-#if [[ $platform == 'mac' ]]; then
-  #bin/package_native concurrent-ruby
-#fi
+if [[ $platform == 'mac' ]]; then
+  bin/package_darwin concurrent-ruby
+fi

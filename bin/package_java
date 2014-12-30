@@ -9,10 +9,8 @@ cd '/vagrant'
 # passed in path of gem to be cross-compiled
 cd $1
 
-rvm use jruby
-
-# ensure RubyGems 1.8.x (required by rake-compiler)
-gem update --system 1.8.25
+rvm use jruby-1.7.18
+gem update --system
 
 rm -f Gemfile.lock
 bundle install --without documentation testing

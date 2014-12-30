@@ -13,7 +13,8 @@ cd '/vagrant'
 cd $1
 
 # need to use 1.9.3 for fat-binaries (2.0.0 can't cross-build 1.9.3)
-rvm use 1.9.3
+rvm use ruby-1.9.3-p551
+gem update --system
 
 rm -f Gemfile.lock
 bundle install --without documentation testing

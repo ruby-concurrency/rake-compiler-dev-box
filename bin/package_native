@@ -9,7 +9,8 @@ cd $1
 # use RVM if it's installed
 if which rvm > /dev/null; then
   source "$HOME/.rvm/scripts/rvm"
-  rvm use 1.9.3
+  rvm use ruby-1.9.3-p551
+  gem update --system
 else
   echo "RVM not installed, proceeding with system Ruby..."
 fi
@@ -18,4 +19,4 @@ rm -f Gemfile.lock
 bundle install --without documentation testing
 
 rake clean
-rake native gem
+rake build:native
