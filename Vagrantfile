@@ -10,7 +10,7 @@ Vagrant.configure('2') do |config|
     cfg.vm.box = 'ubuntu/trusty64'
 
     cfg.vm.provision :shell, :path => 'ubuntu/bootstrap.sh'
-    cfg.vm.provision :shell, :path => 'ubuntu/jdk.sh'
+    #cfg.vm.provision :shell, :path => 'ubuntu/jdk.sh'
     cfg.vm.provision :shell, :path => 'ubuntu/ruby-mingw.sh'
     cfg.vm.provision :shell, :path => 'shared/ruby-rvm.sh'
     cfg.vm.provision :shell, :path => 'shared/rvm-max-rubies.sh'
@@ -19,11 +19,11 @@ Vagrant.configure('2') do |config|
       v.name = 'ruby-concurrency-dev-box-ubuntu-64'
       v.memory = 2048
       v.cpus = 1
+      #v.gui = true
     end
 
-    #cfg.vm.provider :virtualbox do |vb|
-      #vb.gui = true
-    #end
+    cfg.vm.synced_folder '../concurrent-ruby', '/home/vagrant/concurrent-ruby'
+    cfg.vm.synced_folder '../heroku-tester', '/home/vagrant/heroku-tester'
   end
 
   config.vm.define :ubuntu32 do |cfg|
@@ -38,7 +38,10 @@ Vagrant.configure('2') do |config|
       v.name = 'ruby-concurrency-dev-box-ubuntu-32'
       v.memory = 2048
       v.cpus = 1
+      #v.gui = true
     end
+
+    cfg.vm.synced_folder '../concurrent-ruby', '/home/vagrant/concurrent-ruby'
   end
 
   ## http://www.oracle.com/technetwork/server-storage/solaris11/vmtemplates-vmvirtualbox-1949721.html
@@ -57,6 +60,7 @@ Vagrant.configure('2') do |config|
       v.name = 'ruby-concurrency-dev-box-solaris-11'
       v.memory = 2048
       v.cpus = 1
+      #v.gui = true
     end
   end
 
@@ -65,7 +69,7 @@ Vagrant.configure('2') do |config|
     cfg.vm.box = 'box-cutter/centos65'
 
     cfg.vm.provision :shell, :path => 'centos/bootstrap.sh'
-    cfg.vm.provision :shell, :path => 'centos/jdk.sh'
+    #cfg.vm.provision :shell, :path => 'centos/jdk.sh'
     cfg.vm.provision :shell, :path => 'shared/ruby-rvm.sh'
     cfg.vm.provision :shell, :path => 'shared/rvm-max-rubies.sh'
 
