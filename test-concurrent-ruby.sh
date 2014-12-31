@@ -12,6 +12,6 @@ vagrant halt ubuntu32
 #vagrant ssh solaris --command 'sudo /vagrant/tests/solaris-test.sh'
 #vagrant halt solaris
 
-if [[ $platform == 'mac' ]]; then
-  ./tests/darwin-test.sh'
+if [[ `uname` == 'Darwin' ]]; then
+  ./tests/darwin-test.sh
 fi

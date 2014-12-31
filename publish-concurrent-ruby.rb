@@ -21,6 +21,6 @@ Dir["concurrent-ruby/pkg/concurrent-ruby-*#{Concurrent::VERSION}*.gem"].each do 
     puts "Publishing #{basename}..."
     #####`gem push #{gem}`
   else
-    warn "Found unsupported package #{basename}, skipping..."
+    warn "Skipping unsupported package #{basename}..."
   end
 end

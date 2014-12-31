@@ -1,15 +1,5 @@
 #!/usr/bin/env bash
 
-platform='unknown'
-unamestr=`uname`
-if [[ "$unamestr" == 'Linux' ]]; then
-  platform='linux'
-elif [[ "$unamestr" == 'Darwin' ]]; then
-  platform='mac'
-elif [[ "$unamestr" == 'MINGW32_NT_6.1' ]]; then
-  platform='windows'
-fi
-
 rm -R concurrent-ruby/pkg
 
 vagrant up ubuntu64 --provision
@@ -24,6 +14,6 @@ vagrant halt ubuntu32
 #vagrant ssh solaris --command 'package_native concurrent-ruby'
 #vagrant halt solaris
 
-if [[ $platform == 'mac' ]]; then
-  bin/package_darwin concurrent-ruby
+if [[ `uname` == 'Darwin' ]]; then
+  ./bin/package_darwin concurrent-ruby
 fi
