@@ -9,10 +9,15 @@ cd '/vagrant'
 # passed in path of gem to be cross-compiled
 cd $1
 
-rvm use ruby
+rvm use ruby-2.2.0
+gem update --system
+
+rvm gemset delete $1-build --force
+rvm gemset use $1-build --create
 
 rm -f Gemfile.lock
+gem install bundler
 bundle install --without documentation testing
 
-bundle exec rake clean
-BUILD_PURE_RUBY='true' bundle exec rake build
+rake clean
+rake build

@@ -19,6 +19,7 @@ Vagrant.configure('2') do |config|
       v.name = 'ruby-concurrency-dev-box-ubuntu-64'
       v.memory = 2048
       v.cpus = 1
+      #v.gui = true
     end
   end
 
@@ -34,6 +35,7 @@ Vagrant.configure('2') do |config|
       v.name = 'ruby-concurrency-dev-box-ubuntu-32'
       v.memory = 2048
       v.cpus = 1
+      #v.gui = true
     end
   end
 
@@ -53,6 +55,7 @@ Vagrant.configure('2') do |config|
       v.name = 'ruby-concurrency-dev-box-solaris-11'
       v.memory = 2048
       v.cpus = 1
+      #v.gui = true
     end
   end
 
@@ -61,7 +64,7 @@ Vagrant.configure('2') do |config|
     cfg.vm.box = 'box-cutter/centos65'
 
     cfg.vm.provision :shell, :path => 'centos/bootstrap.sh'
-    cfg.vm.provision :shell, :path => 'centos/jdk.sh'
+    #cfg.vm.provision :shell, :path => 'centos/jdk.sh'
     cfg.vm.provision :shell, :path => 'shared/ruby-rvm.sh'
     cfg.vm.provision :shell, :path => 'shared/rvm-max-rubies.sh'
 
