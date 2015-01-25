@@ -19,7 +19,7 @@ Dir["concurrent-ruby/pkg/concurrent-ruby-*#{Concurrent::VERSION}*.gem"].each do 
   basename = File.basename(gem)
   if GEMS.include?(basename)
     puts "Publishing #{basename}..."
-    #####`gem push #{gem}`
+    `gem push #{gem}`
   else
     warn "Skipping unsupported package #{basename}..."
   end
