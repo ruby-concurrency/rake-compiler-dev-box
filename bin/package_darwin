@@ -9,6 +9,9 @@ cd $1
 rvm use ruby-2.2.0@build-$1 --create
 gem update --system
 
+rvm gemset delete $1-build --force
+rvm gemset use $1-build --create
+
 rm -f Gemfile.lock
 gem install bundler
 bundle install --without documentation testing

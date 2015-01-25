@@ -16,8 +16,12 @@ cd $1
 rvm use ruby-1.9.3-p551
 gem update --system
 
+rvm gemset delete $1-build --force
+rvm gemset use $1-build --create
+
 rm -f Gemfile.lock
+gem install bundler
 bundle install --without documentation testing
 
 rake clean
-rake cross native gem RUBY_CC_VERSION=1.9.3:2.0.0
+rake cross native gem RUBY_CC_VERSION=1.9.3:2.0.0:2.1.5

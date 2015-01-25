@@ -11,6 +11,9 @@ if which rvm > /dev/null; then
   source "$HOME/.rvm/scripts/rvm"
   rvm use ruby-1.9.3-p551
   gem update --system
+  rvm gemset delete $1-build --force
+  rvm gemset use $1-build --create
+  gem install bundler
 else
   echo "RVM not installed, proceeding with system Ruby..."
 fi
