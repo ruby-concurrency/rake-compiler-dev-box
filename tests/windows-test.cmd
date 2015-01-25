@@ -1,7 +1,7 @@
 @echo off
 SET ORIGINAL_PATH=%PATH%
 
-SET VERSION="0.8.0.pre3"
+SET VERSION="0.8.0"
 
 SET X64=1
 
