@@ -9,11 +9,11 @@ Vagrant.configure('2') do |config|
 
     cfg.vm.box = 'ubuntu/trusty64'
 
-    cfg.vm.provision :shell, :path => 'ubuntu/bootstrap.sh'
+    #cfg.vm.provision :shell, :privileged => false, :path => 'ubuntu/bootstrap.sh'
     cfg.vm.provision :shell, :path => 'ubuntu/jdk.sh'
-    cfg.vm.provision :shell, :path => 'ubuntu/ruby-mingw.sh'
-    cfg.vm.provision :shell, :path => 'shared/ruby-rvm.sh'
-    cfg.vm.provision :shell, :path => 'shared/rvm-max-rubies.sh'
+    #cfg.vm.provision :shell, :path => 'ubuntu/ruby-mingw.sh'
+    #cfg.vm.provision :shell, :path => 'shared/ruby-rvm.sh'
+    #cfg.vm.provision :shell, :path => 'shared/rvm-max-rubies.sh'
 
     cfg.vm.provider 'virtualbox' do |v|
       v.name = 'ruby-concurrency-dev-box-ubuntu-64'
@@ -27,7 +27,7 @@ Vagrant.configure('2') do |config|
 
     cfg.vm.box = 'ubuntu/trusty32'
 
-    cfg.vm.provision :shell, :path => 'ubuntu/bootstrap.sh'
+    cfg.vm.provision :shell, :privileged => false, :path => 'ubuntu/bootstrap.sh'
     cfg.vm.provision :shell, :path => 'shared/ruby-rvm.sh'
     cfg.vm.provision :shell, :path => 'shared/rvm-min-rubies.sh'
 
