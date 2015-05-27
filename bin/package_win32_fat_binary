@@ -23,5 +23,5 @@ rm -f Gemfile.lock
 gem install bundler
 bundle install --without documentation testing
 
-rake clean
-rake cross native gem RUBY_CC_VERSION=1.9.3:2.0.0:2.1.5
+bundle exec rake clean
+bundle exec rake cross native gem RUBY_CC_VERSION=1.9.3:2.0.0:2.1.5

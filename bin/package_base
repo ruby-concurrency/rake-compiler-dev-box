@@ -19,5 +19,5 @@ rm -f Gemfile.lock
 gem install bundler
 bundle install --without documentation testing
 
-rake clean
-rake build
+bundle exec rake clean
+bundle exec rake build
